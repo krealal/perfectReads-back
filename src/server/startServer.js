@@ -1,4 +1,4 @@
-const debug = require("debug")("tuita:root:");
+const debug = require("debug")("perfectReadsBACK:root:");
 
 const serverUp = (app, port) =>
   new Promise((resolve, reject) => {
