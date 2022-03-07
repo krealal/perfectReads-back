@@ -4,5 +4,11 @@
   "main": "index.js",
   "repository": "https://github.com/isdi-coders-2022/Kevin-Real_Back-Final-Project-202201-BCN.git",
   "author": "Kevin Real <kevinreal8994@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^7.0.0"
+  },
+  "scripts": {
+    "prepare": "husky install"
+  }
 }
