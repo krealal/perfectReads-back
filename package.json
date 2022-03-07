@@ -14,10 +14,18 @@
   "scripts": {
     "prepare": "husky install",
     "test": "jest --passWithNoTests",
-    "test-coverage": "jest --watchAll --coverage"
+    "test-coverage": "jest --watchAll --coverage",
+    "start": "node src",
+    "startMon": "nodemon src"
   },
   "dependencies": {
+    "debug": "^4.3.3",
+    "dotenv": "^16.0.0",
     "eslint-config-prettier": "^8.5.0",
-    "jest": "^27.5.1"
+    "express": "^4.17.3",
+    "helmet": "^5.0.2",
+    "jest": "^27.5.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15"
   }
 }
