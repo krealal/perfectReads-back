@@ -34,7 +34,8 @@
       "src/**/*.js",
       "!src/index.js",
       "!src/server/startServer.js",
-      "!src/db/index.js"
+      "!src/db/index.js",
+      "!src/server/index.js"
     ]
   }
 }
