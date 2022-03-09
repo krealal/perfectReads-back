@@ -3,9 +3,10 @@ const Comment = require("../../db/models/Comment");
 const listComments = async (req, res, next) => {
   try {
     const comments = await Comment.find();
-    res.status(200).json(comments);
+    res.json(comments);
   } catch (error) {
-    next(new Error("No comments"));
+    error.message = "no reviews";
+    next(error);
   }
 };
 
