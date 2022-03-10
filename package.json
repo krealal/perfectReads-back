@@ -19,6 +19,7 @@
     "startMon": "nodemon src"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "debug": "^4.3.3",
     "dotenv": "^16.0.0",
     "eslint-config-prettier": "^8.5.0",
