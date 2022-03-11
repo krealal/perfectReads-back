@@ -5,13 +5,9 @@ const helmet = require("helmet");
 const { notFoundError, fatalError } = require("./middlewares/errors/error");
 const router = require("./routes/commentsRouter");
 
-const corsOptions = {
-  origin: process.env.SERVER_RENDER,
-};
-
 const app = express();
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(helmet());
