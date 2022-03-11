@@ -16,7 +16,8 @@ const deleteReview = async (req, res, next) => {
     const deleted = await Comment.findByIdAndDelete(id);
     res.status(200).json(deleted);
   } catch (error) {
-    next(new Error("review can't be deleted"));
+    error.message = "cant delete review";
+    next(error);
   }
 };
 
