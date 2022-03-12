@@ -21,7 +21,18 @@ const deleteReview = async (req, res, next) => {
   }
 };
 
+const createReview = async (req, res, next) => {
+  try {
+    const review = req.body;
+    const newReview = await Comment.create(review);
+    res.status(201).json(newReview);
+  } catch (error) {
+    next(new Error("can't create review"));
+  }
+};
+
 module.exports = {
   listComments,
   deleteReview,
+  createReview,
 };
