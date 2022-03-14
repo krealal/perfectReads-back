@@ -82,3 +82,25 @@ describe("Given a /reviews/new-post endpoint", () => {
     });
   });
 });
+
+describe("Given a /reviews/622d1071c27b20dcd9384722 endpoint", () => {
+  describe("When it receives a put request with a review in the body", () => {
+    test("Then it sould find the property name in the body of the request", async () => {
+      const review = {
+        name: "luisa",
+        image: "luisa",
+        score: 1,
+        review: "luisa",
+      };
+
+      const id = "622d1071c27b20dcd9384722";
+
+      const { body } = await request(app)
+        .put(`/reviews/${id}`)
+        .send(id, review)
+        .expect(201);
+
+      expect(body).toHaveProperty("name");
+    });
+  });
+});
