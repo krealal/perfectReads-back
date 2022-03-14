@@ -33,9 +33,12 @@ const createReview = async (req, res, next) => {
 
 const updateReview = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const review = req.params;
     const reviewToUpdate = req.body;
-    const reviewUpdated = await Comment.findByIdAndUpdate(id, reviewToUpdate);
+    const reviewUpdated = await Comment.findByIdAndUpdate(
+      review.id,
+      reviewToUpdate
+    );
     res.status(201).json(reviewUpdated);
   } catch (error) {
     next(new Error("can't update review"));
