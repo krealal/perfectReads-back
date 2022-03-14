@@ -4,10 +4,12 @@ const {
   listComments,
   deleteReview,
   createReview,
+  updateReview,
 } = require("./commentControllers");
 
 const mockCommentsGet = jest.spyOn(Comment, "find");
 const mockCommentsDelete = jest.spyOn(Comment, "findByIdAndDelete");
+const mockCommentsUpdate = jest.spyOn(Comment, "findByIdAndUpdate");
 
 describe("given a listComments controller", () => {
   describe("When it receives a response", () => {
@@ -104,6 +106,41 @@ describe("Given a createReview controller", () => {
       const next = jest.fn();
 
       await createReview(null, null, next);
+
+      expect(next).toHaveBeenCalledWith(expectedError);
+    });
+  });
+});
+
+describe("Given a updateReview component", () => {
+  describe("When it gets response with status 201 and id 3", () => {
+    test("Then it should update the review with id3", async () => {
+      const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+      const id = "3";
+      const req = {};
+      req.params = { id };
+      const status = 201;
+      const expectedDeletedReview = { id: "3" };
+      const next = jest.fn();
+      mockCommentsUpdate.mockResolvedValue(expectedDeletedReview);
+
+      await updateReview(req, res, next);
+
+      expect(res.status).toHaveBeenCalledWith(status);
+      expect(res.json).toHaveBeenCalledWith({ id });
+    });
+  });
+
+  describe("When it receives a response", () => {
+    test("Then it should call function next with message 'can't update review'", async () => {
+      const error = new Error();
+      mockCommentsUpdate.mockImplementation(() => Promise.reject(error));
+      const expectedErrorMessage = "can't update review";
+      const expectedError = new Error(expectedErrorMessage);
+
+      const next = jest.fn();
+
+      await updateReview(null, null, next);
 
       expect(next).toHaveBeenCalledWith(expectedError);
     });
