@@ -39,7 +39,7 @@ const updateReview = async (req, res, next) => {
       review.id,
       reviewToUpdate
     );
-    res.status(201).json(reviewUpdated);
+    res.status(200).json(reviewUpdated);
   } catch (error) {
     next(new Error("can't update review"));
   }
