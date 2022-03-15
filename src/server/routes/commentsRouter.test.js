@@ -20,14 +20,6 @@ beforeEach(async () => {
     review: "luis",
     _id: "622d1071c27b20dcd9384722",
   });
-
-  Comment.create({
-    name: "marta",
-    image: "marta",
-    score: 3,
-    review: "marta",
-    _id: "622d1071c27b20dcd9384720",
-  });
 });
 
 afterEach(async () => {
@@ -58,7 +50,7 @@ describe("Given a DELETE /reviews/622d1071c27b20dcd9384722 endpoint", () => {
         .expect(200);
 
       // eslint-disable-next-line no-underscore-dangle
-      expect(body._id).toBe(idLuis);
+      expect(body.id).toBe(idLuis);
     });
   });
 });
