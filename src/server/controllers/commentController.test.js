@@ -119,7 +119,7 @@ describe("Given a updateReview component", () => {
       const id = "3";
       const req = {};
       req.params = { id };
-      const status = 201;
+      const status = 200;
       const expectedDeletedReview = { id: "3" };
       const next = jest.fn();
       mockCommentsUpdate.mockResolvedValue(expectedDeletedReview);
