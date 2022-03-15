@@ -39,9 +39,9 @@ afterAll(async () => {
   await mongoServer.stop();
 });
 
-describe("Given a enpoint /reviews/all", () => {
-  describe("When it gets a good endpoint and status 200", () => {
-    test("then it should find luis in the body.name", async () => {
+describe("Given an enpoint GET /reviews/all", () => {
+  describe("When it gets a good endpoint", () => {
+    test("then it should find luis in the body.name and status 200", async () => {
       const { body } = await request(app).get("/reviews/all").expect(200);
 
       expect(body[0].name).toBe("luis");
@@ -49,8 +49,8 @@ describe("Given a enpoint /reviews/all", () => {
   });
 });
 
-describe("Given a /reviews/:id endpoint", () => {
-  describe("When it receives a DELETE request with a review id", () => {
+describe("Given a DELETE /reviews/622d1071c27b20dcd9384722 endpoint", () => {
+  describe("When it gets a good enpoint", () => {
     test("Then it should respond with a 200 status code and have id in body", async () => {
       const idLuis = "622d1071c27b20dcd9384722";
       const { body } = await request(app)
@@ -63,8 +63,8 @@ describe("Given a /reviews/:id endpoint", () => {
   });
 });
 
-describe("Given a /reviews/new-post endpoint", () => {
-  describe("When it receives a POST request with a review in the body", () => {
+describe("Given a POST /reviews/new-post endpoint", () => {
+  describe("When the review is in the body", () => {
     test("Then it sould find the property name in the body of the request", async () => {
       const review = {
         name: "marta",
@@ -83,9 +83,9 @@ describe("Given a /reviews/new-post endpoint", () => {
   });
 });
 
-describe("Given a /reviews/622d1071c27b20dcd9384722 endpoint", () => {
-  describe("When it receives a put request with a review in the body", () => {
-    test("Then it sould find the property name in the body of the request", async () => {
+describe("Given a PUT /reviews/622d1071c27b20dcd9384722 endpoint", () => {
+  describe("When it receives review in the body", () => {
+    test("Then it sould find the property name in the body of the request with status 200", async () => {
       const review = {
         name: "luisa",
         image: "luisa",
