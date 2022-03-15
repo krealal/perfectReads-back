@@ -98,7 +98,7 @@ describe("Given a /reviews/622d1071c27b20dcd9384722 endpoint", () => {
       const { body } = await request(app)
         .put(`/reviews/${id}`)
         .send(id, review)
-        .expect(201);
+        .expect(200);
 
       expect(body).toHaveProperty("name");
     });
