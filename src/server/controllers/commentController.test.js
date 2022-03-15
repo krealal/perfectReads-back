@@ -12,7 +12,7 @@ const mockCommentsDelete = jest.spyOn(Comment, "findByIdAndDelete");
 const mockCommentsUpdate = jest.spyOn(Comment, "findByIdAndUpdate");
 
 describe("given a listComments controller", () => {
-  describe("When it receives a response", () => {
+  describe("When it dispatch a response", () => {
     test("Then it should call method json with expectedReview", async () => {
       const expectedReview = [
         { name: "aleale", image: "src/1", review: "wow", score: 4 },
@@ -27,7 +27,7 @@ describe("given a listComments controller", () => {
     });
   });
 
-  describe("When it receives a response", () => {
+  describe("When it dispatch a response", () => {
     test("Then it should call function next with message 'no reviews'", async () => {
       const error = new Error();
       mockCommentsGet.mockImplementation(() => Promise.reject(error));
@@ -44,7 +44,7 @@ describe("given a listComments controller", () => {
 });
 
 describe("Given a deleteReview controller", () => {
-  describe("When it receives a response with status 200 and object with id 3", () => {
+  describe("When it dispatch a response with status 200 and object with id 3 in body", () => {
     test("Then it should delete the review with id 3", async () => {
       const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
       const id = "3";
@@ -62,7 +62,7 @@ describe("Given a deleteReview controller", () => {
     });
   });
 
-  describe("When it receives a response", () => {
+  describe("When it dispatch a response", () => {
     test("Then it should call function next with message 'cant delete review'", async () => {
       const error = new Error();
       mockCommentsGet.mockImplementation(() => Promise.reject(error));
@@ -96,7 +96,7 @@ describe("Given a createReview controller", () => {
     });
   });
 
-  describe("When it receives a response", () => {
+  describe("When it dispatch a response", () => {
     test("Then it should call function next with message 'can't create review'", async () => {
       const error = new Error();
       mockCommentsGet.mockImplementation(() => Promise.reject(error));
@@ -113,7 +113,7 @@ describe("Given a createReview controller", () => {
 });
 
 describe("Given a updateReview component", () => {
-  describe("When it gets response with status 201 and id 3", () => {
+  describe("When it gets response with status 200", () => {
     test("Then it should update the review with id3", async () => {
       const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
       const id = "3";
@@ -131,7 +131,7 @@ describe("Given a updateReview component", () => {
     });
   });
 
-  describe("When it receives a response", () => {
+  describe("When it dispatch a response", () => {
     test("Then it should call function next with message 'can't update review'", async () => {
       const error = new Error();
       mockCommentsUpdate.mockImplementation(() => Promise.reject(error));
