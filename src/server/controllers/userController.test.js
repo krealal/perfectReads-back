@@ -39,6 +39,7 @@ afterAll(async () => {
 describe("given a userLogin controller", () => {
   describe("when it receibes a request", () => {
     test("then should responds with token ", async () => {
+      jest.setTimeout(5000);
       const res = {
         json: jest.fn(),
       };
