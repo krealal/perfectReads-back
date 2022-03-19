@@ -33,6 +33,7 @@ afterAll(async () => {
 describe("Given an endpoint POST /user/login", () => {
   describe("When the endpoint is correct", () => {
     test("Then it should return a token and 200 status", async () => {
+      jest.setTimeout(5000);
       const user = {
         username: "kevin",
         password: "user1",
