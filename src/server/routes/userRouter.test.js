@@ -2,14 +2,21 @@ const request = require("supertest");
 const { MongoMemoryServer } = require("mongodb-memory-server");
 const mongoose = require("mongoose");
 const app = require("../index");
-const connectRoboMongo = require("../../db/index");
+const connectMongo = require("../../db/index");
 const User = require("../../db/models/User");
 
 let mongoServer;
+
 beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
   const connectionString = mongoServer.getUri();
-  await connectRoboMongo(connectionString);
+
+  await connectMongo(connectionString);
+});
+
+afterAll(async () => {
+  await mongoose.connection.close();
+  await mongoServer.stop();
 });
 
 beforeEach(async () => {
@@ -25,15 +32,9 @@ afterEach(async () => {
   await User.deleteMany({});
 });
 
-afterAll(async () => {
-  await mongoose.connection.close();
-  await mongoServer.stop();
-});
-
 describe("Given an endpoint POST /user/login", () => {
   describe("When the endpoint is correct", () => {
     test("Then it should return a token and 200 status", async () => {
-      jest.setTimeout(5000);
       const user = {
         username: "kevin",
         password: "user1",
