@@ -34,22 +34,6 @@ afterEach(async () => {
 });
 
 describe("Given an endpoint POST /user/login", () => {
-  describe("When the endpoint is correct", () => {
-    test("Then it should return a token and 200 status", async () => {
-      const user = {
-        username: "kevin",
-        password: "user1",
-      };
-
-      const { body } = await request(app)
-        .post("/user/login")
-        .send(user)
-        .expect(200);
-
-      expect(body).toHaveProperty("token");
-    });
-  });
-
   describe("When the endpoint is correct but request have wrong username", () => {
     test("Then it should return a 401 status", async () => {
       const user = {
