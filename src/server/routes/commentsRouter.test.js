@@ -2,14 +2,14 @@ const request = require("supertest");
 const { MongoMemoryServer } = require("mongodb-memory-server");
 const mongoose = require("mongoose");
 const app = require("../index");
-const connectRoboMongo = require("../../db/index");
+const connectMongo = require("../../db/index");
 const Comment = require("../../db/models/Comment");
 
 let mongoServer;
 beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
   const connectionString = mongoServer.getUri();
-  await connectRoboMongo(connectionString);
+  await connectMongo(connectionString);
 });
 
 beforeEach(async () => {
