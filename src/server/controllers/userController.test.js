@@ -24,6 +24,8 @@ beforeEach(async () => {
     username: "kevin",
     password: cryptPassword,
     image: "src/image.jpg",
+    email: "kevin@kevin.kevin",
+    about: "i like turtles",
   });
 });
 

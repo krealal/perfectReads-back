@@ -26,6 +26,8 @@ beforeEach(async () => {
     username: "kevin",
     password: "$2b$10$KgrIhPGAY12Xy/NPdUdLzubUtsCe0VV42YqPj6mk.sb.8.blGOg7W",
     image: "src/image.jpg",
+    about: "i like turtles",
+    email: "kevin@kevin.kevin",
   });
 });
 

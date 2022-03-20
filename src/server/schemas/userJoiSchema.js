@@ -6,6 +6,8 @@ const reviewSchema = {
     username: Joi.string(),
     password: Joi.string(),
     image: Joi.string(),
+    about: Joi.string(),
+    email: Joi.string,
   }),
 };
 
