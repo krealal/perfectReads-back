@@ -95,7 +95,7 @@ const userRegister = async (req, res, next) => {
       }
     });
   } catch (error) {
-    fs.unlink(path.join("uploads", req.file.filename), () => {
+    fs.unlink(path.join("public", req.file.filename), () => {
       error.code = 400;
       next(error);
     });

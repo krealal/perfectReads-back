@@ -1,9 +1,17 @@
 const request = require("supertest");
+const path = require("path");
 const { MongoMemoryServer } = require("mongodb-memory-server");
 const mongoose = require("mongoose");
 const app = require("../index");
 const connectMongo = require("../../db/index");
 const User = require("../../db/models/User");
+
+jest.mock("firebase/storage", () => ({
+  getStorage: () => ({}),
+  ref: () => ({}),
+  getDownloadURL: () => Promise.resolve("image.jpg"),
+  uploadBytes: () => Promise.resolve(),
+}));
 
 let mongoServer;
 
@@ -56,6 +64,36 @@ describe("Given an endpoint POST /user/login", () => {
       };
 
       await request(app).post("/user/login").send(user).expect(401);
+    });
+  });
+});
+
+describe("given an endpoint POST /user/register", () => {
+  describe("When it receives a username with fields and image", () => {
+    test("Then it should return 201 status", async () => {
+      await request(app)
+        .post(`/user/register`)
+        .field("name", "kevin")
+        .field("username", "kevin1234")
+        .field("password", "kevin1234")
+        .field("about", "kevin")
+        .field("email", "kevin.kevin")
+        .attach("image", path.resolve("public/hola.png"))
+        .expect(201);
+    });
+  });
+
+  describe("When it receives a username with fields and image that alredy exists", () => {
+    test("Then it should return 400 status", async () => {
+      await request(app)
+        .post(`/user/register`)
+        .field("name", "kevin")
+        .field("username", "kevin")
+        .field("password", "kevin1234")
+        .field("about", "kevin")
+        .field("email", "kevin.kevin")
+        .attach("image", path.resolve("public/hola.png"))
+        .expect(400);
     });
   });
 });
